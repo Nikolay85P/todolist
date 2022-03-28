@@ -1,0 +1,28 @@
+<%- include('header') -%>
+
+<section class="container customPadding">
+  <div class="sub_container" id="todoList">
+    <div class="box" id="heading">
+      <h1><%= listTitle %></h1>
+    </div>
+
+    <div class="box">
+      <% newList.forEach(item => { %>
+
+      <form action="/delete" method="post">
+        <div class="item">
+          <input type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()"></input>
+          <p><%= item.name %></p>
+          <input type="hidden" name="listName" value="<%= listTitle %>" onChange="this.form.submit()"></input>
+      </form>
+    </div>
+    <% }); %>
+    <form class="item" action="/" method="post">
+      <input type="text" name="newToDo" placeholder="Next to-do..." autocomplete="off" required>
+      <button type="submit" name="list" value=<%= listTitle %>><i class="bi bi-plus-square"></i></button>
+    </form>
+  </div>
+</section>
+
+
+<%- include('footer') -%>
